@@ -15,9 +15,6 @@ import { z } from "zod";
 import { SuccessModal, ErrorModal } from "@/components/modals";
 import { countryCodes, type CountryCode } from "@/data/countryCodes";
 
-
-
-
 // Definer schema
 const contactSchema = z.object({
   name: z.string().min(2, "Navnet må være minst 2 tegn"),
@@ -132,49 +129,49 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-20 px-6">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto text-white">
-        {/* Tilbake-knapp */}
-        <div className="mb-10">
+        {/* Tilbake-knapp - Responsiv */}
+        <div className="mb-6 sm:mb-8 lg:mb-10">
           <button
             onClick={handleBackClick}
-            className="flex items-center space-x-2 text-white bg-gray-700 hover:bg-gray-600 transition-colors px-4 py-2 rounded-lg animate-fade-in-up"
+            className="flex items-center space-x-2 text-white bg-gray-700 hover:bg-gray-600 transition-colors px-3 py-2 sm:px-4 sm:py-2 rounded-lg animate-fade-in-up text-sm sm:text-base"
           >
-            <ArrowLeft size={18} />
+            <ArrowLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
             <span>Tilbake</span>
           </button>
         </div>
 
-        {/* Animert overskrift */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center animate-fade-in-up animation-delay-100">
+        {/* Animert overskrift - Responsiv */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-center animate-fade-in-up animation-delay-100">
           Kontakt meg
         </h1>
 
-        {/* Animert kontaktinfo */}
-        <section className="grid sm:grid-cols-3 gap-6 mb-12 text-gray-300 text-sm text-center">
+        {/* Animert kontaktinfo - Responsiv layout */}
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 text-gray-300 text-sm text-center">
           <div className="flex flex-col items-center space-y-2 animate-fade-in-up animation-delay-200">
-            <Mail className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300" />
-            <p className="transition-colors duration-300 hover:text-white">
+            <Mail className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300 w-5 h-5 sm:w-6 sm:h-6" />
+            <p className="transition-colors duration-300 hover:text-white text-xs sm:text-sm break-all">
               aslan.khatuev@outlook.com
             </p>
           </div>
           <div className="flex flex-col items-center space-y-2 animate-fade-in-up animation-delay-400">
-            <Phone className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300" />
-            <p className="transition-colors duration-300 hover:text-white">
+            <Phone className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300 w-5 h-5 sm:w-6 sm:h-6" />
+            <p className="transition-colors duration-300 hover:text-white text-xs sm:text-sm">
               +47 400 40 10
             </p>
           </div>
           <div className="flex flex-col items-center space-y-2 animate-fade-in-up animation-delay-600">
-            <MapPin className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300" />
-            <p className="transition-colors duration-300 hover:text-white">
+            <MapPin className="text-blue-400 transition-all duration-300 hover:scale-110 hover:text-blue-300 w-5 h-5 sm:w-6 sm:h-6" />
+            <p className="transition-colors duration-300 hover:text-white text-xs sm:text-sm">
               Skien, Norge
             </p>
           </div>
         </section>
 
-        {/* Animert kontaktskjema */}
-        <div className="bg-white/5 p-8 rounded-xl shadow-xl backdrop-blur-sm border border-white/10 animate-fade-in-up animation-delay-800 hover:bg-white/10 transition-all duration-500">
-          <div className="space-y-6">
+        {/* Animert kontaktskjema - Responsiv padding */}
+        <div className="bg-white/5 p-4 sm:p-6 lg:p-8 rounded-xl shadow-xl backdrop-blur-sm border border-white/10 animate-fade-in-up animation-delay-800 hover:bg-white/10 transition-all duration-500">
+          <div className="space-y-4 sm:space-y-6">
             <div className="flex flex-col animate-slide-in-left animation-delay-1000">
               <label htmlFor="name" className="text-sm mb-1 text-gray-300">
                 Navn <span className="text-red-400">*</span>
@@ -183,11 +180,11 @@ const ContactPage = () => {
                 type="text"
                 id="name"
                 {...register("name")}
-                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700"
+                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700 text-sm sm:text-base"
                 placeholder="Ditt navn"
               />
               {errors.name && (
-                <span className="text-red-400 text-sm mt-1 animate-fade-in">
+                <span className="text-red-400 text-xs sm:text-sm mt-1 animate-fade-in">
                   {errors.name.message}
                 </span>
               )}
@@ -201,54 +198,63 @@ const ContactPage = () => {
                 type="email"
                 id="email"
                 {...register("email")}
-                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700"
+                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700 text-sm sm:text-base"
                 placeholder="din@email.no"
               />
               {errors.email && (
-                <span className="text-red-400 text-sm mt-1 animate-fade-in">
+                <span className="text-red-400 text-xs sm:text-sm mt-1 animate-fade-in">
                   {errors.email.message}
                 </span>
               )}
             </div>
 
+            {/* Telefonnummer - Fullstendig responsiv løsning */}
             <div className="flex flex-col animate-slide-in-left animation-delay-1300">
               <label htmlFor="phone" className="text-sm mb-1 text-gray-300">
                 Telefonnummer <span className="text-red-400">*</span>
               </label>
-              <div className="flex relative overflow-visible">
-                {/* Landkode dropdown */}
-                <div className="relative">
+
+              {/* Mobile-first: Stacked layout */}
+              <div className="flex flex-col sm:flex-row w-full">
+                {/* Landkode dropdown - Full width på mobil */}
+                <div className="relative w-full sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center space-x-2 p-3 bg-gray-700 text-white border border-white/10 rounded-l focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-600 min-w-[120px] relative z-10"
+                    className="flex items-center justify-between w-full sm:justify-center sm:w-auto space-x-2 p-3 bg-gray-700 text-white border border-white/10 rounded sm:rounded-l sm:rounded-r-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-600 sm:min-w-[120px] relative z-10 text-sm sm:text-base"
                   >
-                    <span className="text-lg">{selectedCountry.flag}</span>
-                    <span className="text-sm font-medium">
-                      {selectedCountry.code}
-                    </span>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-base sm:text-lg">
+                        {selectedCountry.flag}
+                      </span>
+                      <span className="text-xs sm:text-sm font-medium">
+                        {selectedCountry.code}
+                      </span>
+                    </div>
                     <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-200 ${
+                      size={14}
+                      className={`transition-transform duration-200 sm:w-4 sm:h-4 ${
                         isDropdownOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
                 </div>
 
-                {/* Telefonnummer input */}
-                <input
-                  type="tel"
-                  id="phone"
-                  value={phoneNumber}
-                  onChange={handlePhoneNumberChange}
-                  className="flex-1 p-3 rounded-r bg-gray-800 text-white border border-white/10 border-l-0 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700"
-                  placeholder={selectedCountry.format.replace(/X/g, "0")}
-                />
+                {/* Telefonnummer input - Full width */}
+                <div className="flex-1 mt-2 sm:mt-0">
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
+                    className="w-full p-3 rounded sm:rounded-r sm:rounded-l-none bg-gray-800 text-white border border-white/10 sm:border-l-0 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 hover:bg-gray-700 text-sm sm:text-base"
+                    placeholder={selectedCountry.format.replace(/X/g, "0")}
+                  />
+                </div>
               </div>
 
               {errors.phone && (
-                <span className="text-red-400 text-sm mt-1 animate-fade-in">
+                <span className="text-red-400 text-xs sm:text-sm mt-1 animate-fade-in">
                   {errors.phone.message}
                 </span>
               )}
@@ -278,13 +284,13 @@ const ContactPage = () => {
               </div>
               <textarea
                 id="message"
-                rows={5}
+                rows={4}
                 {...register("message")}
-                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none resize-vertical transition-all duration-300 hover:bg-gray-700"
+                className="p-3 rounded bg-gray-800 text-white border border-white/10 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none resize-vertical transition-all duration-300 hover:bg-gray-700 text-sm sm:text-base sm:rows-5"
                 placeholder="Skriv meldingen din her..."
               />
               {errors.message && (
-                <span className="text-red-400 text-sm mt-1 animate-fade-in">
+                <span className="text-red-400 text-xs sm:text-sm mt-1 animate-fade-in">
                   {errors.message.message}
                 </span>
               )}
@@ -299,11 +305,11 @@ const ContactPage = () => {
               type="submit"
               onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting}
-              className="flex items-center justify-center space-x-2 bg-blue-600 text-white font-medium py-3 px-6 rounded hover:bg-blue-700 transition-all duration-500 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed animate-fade-in-up animation-delay-1700 hover:scale-105 hover:shadow-xl transform active:scale-95"
+              className="flex items-center justify-center space-x-2 bg-blue-600 text-white font-medium py-3 px-4 sm:px-6 rounded hover:bg-blue-700 transition-all duration-500 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed animate-fade-in-up animation-delay-1700 hover:scale-105 hover:shadow-xl transform active:scale-95 text-sm sm:text-base"
             >
               <Send
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-1"
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1 sm:w-[18px] sm:h-[18px]"
               />
               <span>{isSubmitting ? "Sender..." : "Send melding"}</span>
             </button>
@@ -322,7 +328,7 @@ const ContactPage = () => {
         onClose={() => setShowErrorModal(false)}
       />
 
-      {/* Dropdown menu rendret utenfor skjemaet for å unngå z-index problemer */}
+      {/* Dropdown menu - Responsiv posisjonering */}
       {isDropdownOpen && (
         <>
           {/* Overlay for å lukke dropdown */}
@@ -331,11 +337,12 @@ const ContactPage = () => {
             onClick={() => setIsDropdownOpen(false)}
           ></div>
 
-          {/* Dropdown menu */}
+          {/* Dropdown menu - Responsiv størrelse og posisjon */}
           <div
-            className="fixed z-[9999] w-80 max-h-60 overflow-y-auto bg-gray-900 border-2 border-blue-400/50 rounded-lg shadow-2xl"
+            className="fixed z-[9999] w-[calc(100vw-2rem)] max-w-80 max-h-60 overflow-y-auto bg-gray-900 border-2 border-blue-400/50 rounded-lg shadow-2xl mx-4"
             style={{
-              top: "420px",
+              top: window.innerWidth < 640 ? "auto" : "420px",
+              bottom: window.innerWidth < 640 ? "20px" : "auto",
               left: "50%",
               transform: "translateX(-50%)",
             }}
@@ -345,7 +352,7 @@ const ContactPage = () => {
                 key={country.code}
                 type="button"
                 onClick={() => handleCountrySelect(country)}
-                className={`w-full flex items-center justify-between p-3 text-left hover:bg-blue-600/20 transition-colors duration-200 text-sm ${
+                className={`w-full flex items-center justify-between p-3 text-left hover:bg-blue-600/20 transition-colors duration-200 text-xs sm:text-sm ${
                   index === 0 ? "rounded-t-lg" : ""
                 } ${
                   index === countryCodes.length - 1
@@ -355,13 +362,13 @@ const ContactPage = () => {
                   selectedCountry.code === country.code ? "bg-blue-600/30" : ""
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg">{country.flag}</span>
-                  <span className="text-white font-medium">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <span className="text-base sm:text-lg">{country.flag}</span>
+                  <span className="text-white font-medium truncate">
                     {country.country}
                   </span>
                 </div>
-                <span className="text-blue-300 font-mono text-xs">
+                <span className="text-blue-300 font-mono text-xs ml-2">
                   {country.code}
                 </span>
               </button>
@@ -470,6 +477,18 @@ const ContactPage = () => {
 
         .animation-delay-1700 {
           animation-delay: 1.7s;
+        }
+
+        /* Responsive textarea rows */
+        @media (min-width: 640px) {
+          textarea {
+            min-height: 120px;
+          }
+        }
+
+        /* Ensure no horizontal overflow */
+        * {
+          box-sizing: border-box;
         }
       `}</style>
     </main>
