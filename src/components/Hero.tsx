@@ -293,10 +293,10 @@ const Hero = () => {
               >
                 <div className="text-center">
                   <div className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-0.5 xs:mb-1">
-                    2+
+                    2 års
                   </div>
                   <div className="text-xs xs:text-sm sm:text-base text-gray-400 leading-tight">
-                    års studie i Frontend utvikling
+                   Studie i Frontend utvikling
                   </div>
                 </div>
                 <div className="text-center">
