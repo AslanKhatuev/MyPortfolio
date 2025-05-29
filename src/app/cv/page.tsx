@@ -159,7 +159,7 @@ const CV = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Globe size={16} />
-                    <span>www.dinportfolio.no</span>
+                    <span>aslankhatuev.vercel.app</span>
                   </div>
                 </div>
               </div>
