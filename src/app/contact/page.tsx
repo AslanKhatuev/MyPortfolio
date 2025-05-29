@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Mail,
   Phone,
@@ -52,6 +52,12 @@ const ContactPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Fix hydration by waiting for client mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const {
     register,
@@ -128,9 +134,21 @@ const ContactPage = () => {
     }
   };
 
+  // Don't render dropdown positioning until mounted
+  const getDropdownStyle = () => {
+    if (!isMounted) return {};
+
+    return {
+      top: window.innerWidth < 640 ? "auto" : "420px",
+      bottom: window.innerWidth < 640 ? "20px" : "auto",
+      left: "50%",
+      transform: "translateX(-50%)",
+    };
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto text-white">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-20 px-6">
+      <div className="max-w-5xl mx-auto text-white">
         {/* Tilbake-knapp - Responsiv */}
         <div className="mb-6 sm:mb-8 lg:mb-10">
           <button
@@ -328,8 +346,8 @@ const ContactPage = () => {
         onClose={() => setShowErrorModal(false)}
       />
 
-      {/* Dropdown menu - Responsiv posisjonering */}
-      {isDropdownOpen && (
+      {/* Dropdown menu - Only render when mounted to avoid hydration issues */}
+      {isDropdownOpen && isMounted && (
         <>
           {/* Overlay for å lukke dropdown */}
           <div
@@ -340,12 +358,7 @@ const ContactPage = () => {
           {/* Dropdown menu - Responsiv størrelse og posisjon */}
           <div
             className="fixed z-[9999] w-[calc(100vw-2rem)] max-w-80 max-h-60 overflow-y-auto bg-gray-900 border-2 border-blue-400/50 rounded-lg shadow-2xl mx-4"
-            style={{
-              top: window.innerWidth < 640 ? "auto" : "420px",
-              bottom: window.innerWidth < 640 ? "20px" : "auto",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
+            style={getDropdownStyle()}
           >
             {countryCodes.map((country, index) => (
               <button
