@@ -98,6 +98,7 @@ const AboutPage = () => {
               "React",
               "Next.js",
               "TypeScript",
+              "Vue",
               "Tailwind CSS",
               "Node.js",
               "Express",
@@ -107,6 +108,10 @@ const AboutPage = () => {
               "Git & GitHub",
               "Responsive Design",
               "UX/UI-tenkning",
+              "JavaScript",
+              "HTML",
+              "CSS",
+              "Arbeidsmetodikker",
             ].map((skill, i) => (
               <div
                 key={i}
