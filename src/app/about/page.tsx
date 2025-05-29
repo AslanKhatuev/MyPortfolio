@@ -91,7 +91,7 @@ const AboutPage = () => {
         {/* Kompetanse */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-6">
-            Kjernekompetanse
+            IT Kjernekompetanse
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-gray-300 text-sm">
             {[
